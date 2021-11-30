@@ -1,0 +1,502 @@
+/* Import our favorite font */
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+/* Remove padding and margin from all elements */
+* {
+  padding:0;
+  margin:0;
+  font-family: 'Source Code Pro', monospace;
+}
+
+html {
+	font-size:3vmin
+}
+/* Ensure our body is as big as the screen */
+body {
+  width: 100vw;
+  height: 100vh;
+	font-size: 1rem;
+}
+
+button {
+	font-size: 1rem;
+  cursor: pointer;
+}
+
+
+/* UI elements */
+button.ui {
+	position: absolute;
+	opacity:0.0;
+	background-color: #999;
+}
+
+/* Set the Stage */
+#stage {
+  background: rgb(181,199,222);
+background: linear-gradient(102deg, rgba(181,199,222,1) 0%, rgba(225,218,215,1) 37%, rgba(233,222,214,1) 50%, rgba(231,221,214,1) 64%, rgba(181,199,222,1) 98%); 
+ width:100%;
+ height: 100%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ position: relative;
+}
+
+.scene {
+	box-sizing: border-box;
+	height:100vmin;
+  width:100vmin;   
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position: absolute;
+	top:calc(abs(100vh - 100vmin)/2);
+	left:calc(abs(100vw - 100vmin)/2);
+	/* Animated properties */
+	opacity: 1;	
+	transition: opacity 380ms ease-in-out;	
+}
+
+/* Working with each Scene */
+/* The Title Scene */
+.title-page {
+ width:100%;
+ padding:40px; 
+}
+
+button.start {
+ padding:5px;
+ cursor: pointer;
+ border-radius:5px;
+ border:1px solid #ccc;
+ box-shadow:0 0 4px 2px rgba(1, 6, 23, 0.56);
+}
+
+button.start:hover {
+  border-color: rgb(181,199,222)
+}
+
+/* Non interactive scenes */
+img.scene-img {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  display:block;
+}
+
+/* Interactive Scene */
+.scene.interactive {
+
+  background-size: contain;
+  background-repeat: no-repeat;  
+}
+
+
+/* --------------------------------------------------------- */
+/* Home Screen Scene */
+#home-screen {
+  background-image: url('../Assets/03_HomeScreen.png');
+}
+
+button.home-screen-button {
+  width:13%;
+  height:13%;
+  border-radius:20%;
+	transform:rotate(-13deg);  
+}
+
+button#messages {
+  top:18%;
+  left:25%;
+}
+
+button#email {
+  top:15%;
+  left:40%;
+}
+
+button#mocha {
+  top:34%;
+  left:29%;
+}
+
+button#phone {
+  top:82%;
+  left:40%;
+}
+
+/* --------------------------------------------------------- */
+/* Text Home Screen */
+#text-home {
+  background-image: url('../Assets/TextHome.png');
+}
+#text-home.read {
+  background-image: url('../Assets/ScamTextRead.png');
+}
+
+#text-home.deleted {
+  background-image: url('../Assets/TextHomeDeleted.png');
+}
+#text-home.deleted button#spam-text {
+  display:none;
+}
+
+
+button.text-home-button {
+  width:63%;
+  height:15%;  
+  transform:rotate(-1deg);  
+}
+
+button#spam-text{
+  top:13%;
+  left:20%;
+}
+
+button#text-home-to-home {
+	width:9%;
+	height:9%;
+	bottom:2%;
+	right:23%
+}
+/* Text Spam Screen */
+#text-message {
+  background-image: url('../Assets/phonetext.png');
+}
+
+button#link-spam-text {
+  width:25%;
+  height:5%;  
+  top:54.5%;
+  left: 27%;  
+}
+
+button#delete-spam-text {
+  width:8%;
+  height:10%;  
+  top:2%;
+  left: 70%;  
+}
+
+button#back-to-text-home {  
+  width:11%;
+  height:11%;
+  top:3%;
+  left:22%;  
+}
+
+/* --------------------------------------------------------- */
+/* Email Home Screen */
+#email-home {
+  background-image: url('../Assets/EmailHome.png');
+}
+
+#email-home.spam-read {
+  background-image: url('../Assets/EmailHomeScamRead.png');
+}
+
+#email-home.real-read {
+  background-image: url('../Assets/EmailHomeRealRead.png');
+}
+
+#email-home.spam-deleted {
+	background-image: url('../Assets/EmailDeletedScamRealUnread.png');
+}
+
+#email-home.real-read.spam-read {
+  background-image: url('../Assets/EmailHomeAllRead.png');
+}
+
+#email-home.real-read.spam-deleted {
+	background-image: url('../Assets/EmailDeletedScam.png');
+}
+
+button.email-home-button {
+  width:63%;
+  height:15%;  
+  transform:rotate(-1deg);  
+}
+
+button#spam-email{
+	top:13%;	
+}
+
+button#real-email{
+	top:30%;
+	left:20%;
+}
+
+#email-home.spam-deleted button#spam-email {
+	display: none;
+}
+
+#email-home.spam-deleted button#real-email {
+	top:13%;
+	left:20%;
+}
+
+button#email-home-to-home {  
+  width:10%;
+  height:10%;
+  top:88%;
+  left:67%;  
+}
+
+
+/* Real Email Screen */
+#real-email-screen {
+  background-image: url('../Assets/RealEmail.png');
+}
+
+button.email-delete {
+	width:8%;
+	height:9%;
+	bottom:3%;
+	right:37%;
+}
+
+#back-to-email-home-from-real {
+  width: 10%;
+  height: 10%;  
+  right:23%;
+  bottom:2%;  
+}
+
+button#link-real-email {
+  width:33%;
+  height:5.5%;  
+  top:55%;
+  left:22%;  
+}
+
+/* Scam Email Screen */
+#scam-email-screen {
+  background-image: url('../Assets/ScamEmail.png');
+}
+
+button#link-spam-email {
+  width:19%;
+  height:4.5%;  
+  top:58%;
+  left: 21%;
+}
+
+button#back-to-email-home {  
+  width:10%;
+  height:10%;
+  top:88%;
+  left:67%;  
+}
+
+/* TODO: Create click link or delete email buttons */ 
+
+/* --------------------------------------------------------- */
+/* Mocha screen */
+#mocha-screen {
+  background-image: url('../Assets/Mocha.png');
+}
+
+#mocha-shell {
+	padding:3%;
+	box-sizing: border-box;
+	background-color: #000;
+	color:#FFF;
+	width: 100%;
+	height: 100%;
+}
+
+span.shell-cursor {
+
+}
+
+button#back-to-home-mocha {
+  width:10%;
+  height:10%;  
+  bottom:2%;
+  right:23%;
+}
+
+
+/* Phone Call Home Screen */
+#phone-home {
+  background-image: url('../Assets/IncomingCall.png');
+}
+
+button.phone-home-button {
+  width:15%;
+  height:15%;  
+  transform:rotate(-1deg);
+  border-radius:50%;  
+}
+
+button#accept{
+    top:72%;
+    left:38%;
+}
+
+button#reject{
+    top:67%;
+    left:64%;
+}
+
+
+/*--------------------------------------------------------------*/
+/* Call in progress */
+#phone-answer {
+  background-image: url('../Assets/CallProgress.png');
+}
+
+button.phone-answer-button {
+  width:15%;
+  height:15%;  
+  transform:rotate(-1deg);
+  border-radius:50%;  
+}
+
+#phone-dialog {
+	height:35%;	
+	width:48%;
+	position:absolute;
+	left:28%;	
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;	
+	transform:rotate(-12deg);		
+}
+
+#caller-dialog {
+	width:100%;
+	box-sizing: border-box;
+	overflow-y: scroll;
+	height: 60%;
+	padding:5%;
+	color:#fff;
+	background-color: #333333C7;
+}
+
+#blob-dialog {
+  width:100%;
+  display: flex;
+	justify-content: center;
+}
+
+#blob-dialog button {
+	margin:0.4rem;
+	padding:0.3rem;
+	border:2px solid rgb(157, 157, 143);
+	background-color: rgb(237, 237, 195);
+}
+
+#blob-dialog button:hover {
+	background-color: rgb(242, 242, 213);
+	border:2px solid rgb(157, 157, 143);
+}
+
+button#hang-up{
+	top: 71%;
+	left:52%;
+}
+
+span.caller-dialog-word {
+	color: #999;
+}
+
+span.caller-dialog-word.elipsis {
+	display: block;
+}
+
+span.caller-dialog-word.active {
+	color: rgb(105, 243, 255);
+}
+
+
+
+/*--------------------------------------------------------------*/
+/* Game Over Home Screen */
+
+#game-over::before, #level-passed::before{
+	content: "";
+	position: absolute;
+	top:0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-size: contain;
+  background-repeat: no-repeat;
+	filter: blurr(0); 
+	transition: filter 2000ms ease-in-out;
+}
+
+#game-over.blurr::before, #level-passed.blurr::before{
+	filter:blur(5px);
+}
+
+#game-over::before {
+  background-image: url('../Assets/gameovermrblob.png');
+}
+
+#level-passed::before {
+  background-image: url('../Assets/Success.png');
+}
+
+.restart-wrapper {	
+	width:100%;	
+	background-color: #c4c4b7;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem 0;	
+}
+button.restart, button.continue {			
+	padding:1% 2%;		
+	border:2px solid rgb(157, 157, 143);
+	background-color: rgb(237, 237, 195);
+}
+
+button.restart:hover, button.continue:hover {
+	background-color: rgb(242, 242, 213);
+	border:2px solid rgb(157, 157, 143);
+}
+
+/* --------------------------------------------------------- */
+/* Explainations */
+
+.info-wrapper {
+  position: absolute;
+  top:0%;
+  left:0%;
+  z-index:2;
+  height:100%;
+  width:100%;	
+  overflow-y: scroll;	
+	box-sizing: border-box;
+	background-color: #dfdfd4D6;
+	color:#282826;	
+	transition: opacity 360ms ease-in-out;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.info-wrapper p, .info-wrapper ul {
+	width: 80%;
+	padding: 3% 0;
+}
+
+
+/* --------------------------------------------------------- */
+/* Utilities */
+
+button#home {
+  position: absolute;
+  bottom:10px;
+  left: 10px;
+}
+
+.hidden {
+  opacity:0;
+	z-index:-1;
+}

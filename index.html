@@ -1,13 +1,300 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>replit</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body>
-    Hello world
-    <script src="script.js"></script>
-  </body>
+
+<head>
+	<meta charset="utf-8">
+	<base href=".">
+	<meta name="viewport" content="width=device-width">
+	<title>CPSC 329 - Unessay Project</title>
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<link rel="preload" href="Assets/01_Sleep.png" as="image">
+	<link rel="preload" href="Assets/EmailHomeRealRead.png" as="image">
+	<link rel="preload" href="Assets/phonetext.png" as="image">
+	<link rel="preload" href="Assets/textbutton.png" as="image">
+	<link rel="preload" href="Assets/02_Awake.png" as="image">
+	<link rel="preload" href="Assets/EmailHomeScamRead.png" as="image">
+	<link rel="preload" href="Assets/RealEmail.png" as="image">
+	<link rel="preload" href="Assets/TextHomeDeleted.png" as="image">
+	<link rel="preload" href="Assets/03_HomeScreen.png" as="image">
+	<link rel="preload" href="Assets/gameovermrblob.png" as="image">
+	<link rel="preload" href="Assets/returnbuttontext.png" as="image">
+	<link rel="preload" href="Assets/TextHome.png" as="image">
+	<link rel="preload" href="Assets/CallProgress.png" as="image">
+	<link rel="preload" href="Assets/IncomingCall.png" as="image">
+	<link rel="preload" href="Assets/ScamEmail.png" as="image">
+	<link rel="preload" href="Assets/trashicon.png" as="image">
+	<link rel="preload" href="Assets/EmailHomeAllRead.png" as="image">
+	<link rel="preload" href="Assets/MenuIcons.png" as="image">
+	<link rel="preload" href="Assets/ScamTextRead.png" as="image">
+	<link rel="preload" href="Assets/EmailHome.png" as="image">
+	<link rel="preload" href="Assets/Mocha.png" as="image">
+	<link rel="preload" href="Assets/Success.png" as="image">
+</head>
+
+<body>
+	<!-- The Stage -->
+	<div id="stage">
+		<!-- Title Scene -->
+		<div id="title" class="scene title-page">
+			<div class="us">
+				<h1>Unessay Project</h1>
+				<p class="title">CPSC 329</p>
+				<p>By: Juan Pablo Lozano, Akansha Malik, Paige So'Brien, Kaylee Nasser, Rana Mahveen</p>
+			</div>
+			<button class="start" id="start">Start</button>
+		</div>
+    <!-- Sleep Scene -->
+    <div id="sleep" class="scene hidden">
+     <img class="scene-img" src="Assets/01_Sleep.png" />
+    </div>
+    <!-- Awake Scene -->
+    <div id="awake" class="scene hidden">
+     <img class="scene-img" src="Assets/02_Awake.png" />
+    </div>
+
+		<!-- ------------------------------------------------------- -->
+    <!-- Home Screen Scene and Buttons -->
+    <div id="home-screen" class="scene interactive hidden">
+     <button id="messages" class="ui home-screen-button" /> 
+     <button id="email" class="ui home-screen-button" />    
+     <button id="phone" class="ui home-screen-button" />   
+     <button id="mocha" class="ui home-screen-button" />     
+    </div>
+
+		<!-- ------------------------------------------------------- -->
+    <!-- Text Home Scene -->
+    <div id="text-home" class="scene interactive hidden">
+     <button id="spam-text" class="ui text-home-button" /> 
+     <button id="text-home-to-home" class="ui"/>
+    </div>
+    <!-- Text Spam Scene -->
+    <div id="text-message" class="scene interactive hidden">
+      <button id="link-spam-text" class="ui"/>
+      <button id="back-to-text-home" class="ui"/>
+      <button id="delete-spam-text" class="ui"/>
+    </div>
+
+		<!-- ------------------------------------------------------- -->
+    <!-- Email Home Scene -->
+    <div id="email-home" class="scene interactive hidden">
+     <button id="spam-email" class="ui email-home-button ui" /> 
+     <button id="real-email" class="ui email-home-button ui" /> 
+     <button id="email-home-to-home" class="ui"/>
+    </div>
+		<!-- Email Scam Scene -->
+    <div id="scam-email-screen" class="scene interactive hidden">
+      <button id="link-spam-email" class="ui"/>
+      <button id="ignore-spam-email" class="ui email-delete"/>
+      <button id="back-to-email-home" class="ui"/>
+    </div>
+		<!-- Email Real Scene -->
+    <div id="real-email-screen" class="scene interactive hidden">
+      <button id="link-real-email" class="ui"/>
+      <button id="ignore-real-email" class="ui email-delete"/>
+      <button id="back-to-email-home-from-real" class="ui"/>
+    </div>
+
+		<!-- ------------------------------------------------------- -->
+    <!-- Phone Home Scene -->
+    <div id="phone-home" class="scene interactive hidden">
+     <button id="accept" class="ui phone-home-button" /> 
+     <button id="reject" class="ui phone-home-button" /> 
+    </div>
+		<!-- Phone Answer Scene -->
+    <div id="phone-answer" class="scene interactive hidden">
+			<div id="phone-dialog">
+				<div id="caller-dialog">
+				</div>
+			    <div id="blob-dialog">
+				</div>
+			</div>
+      <button id="hang-up" class="ui phone-home-button" /> 
+    </div>
+		<!-- ------------------------------------------------------- 
+    <!-- Mocha -->
+    <div id="mocha-screen" class="scene interactive hidden">
+			<div id="mocha-shell">
+				<span id="shell-prompt">mr.blob@home:~$ </span><span id="shell-command"></span><span id="shell-cursor">&#9608;</span>
+			</div>
+      <button id="back-to-home-mocha" class="ui"/>
+    </div>
+		<!------------------------------------------------------------>
+
+
+		<!-- EXPLAINATIONS ---------------------------------------- -->
+		<!-- Info - GAMOVER -->
+		<div id="game-over" class="scene interactive hidden">
+
+			<!-- TEXT FAIL -->
+			<div id="text-fail" class="info-wrapper hidden">
+
+				<p>
+					Although the offer sounds too good to turn down, it is unfortunately a scam, more specifically, its Smishing. Smishing is a type of phishing and cybersecurity attack that is  carried out through mobile text messaging, also known as SMS phishing. Victims are deceived into giving sensitive information to a disguised attacker.  Lottery companies or any responsible business would not inform a winner of the prizes via text message, or ask you to click a link. 
+				</p>
+				<p>
+					During the Covid-19 pandemic, scammers are looking for various methods to scam people. Some signs of smishing scams are encouraging you to respond right away whether that be through large rewards. Many smishing messages appear to be from trustworthy sources but always be cautious, even if you recognize the organization.
+				</p>
+				<p>Ways to avoid this:</p>
+				<ul> 
+					<li>Check the phone number</li>
+					<li>Do not respond</li>
+					<li>Intall anti-malware app</li>
+				</ul>		
+				<div class="restart-wrapper">
+					<button class="restart">Restart Game</button>
+				</div>
+			</div>
+
+			<!-- EMAIL SCAM FAIL -->
+			<div id="emailscam-fail" class="info-wrapper hidden">
+				<p>
+					Mr. Blob just sent company money to a scammer! If Mr. Blob paid more attention to the sender address, he would notice that the name of his company email domain was incorrectly spelt. Mr. Blob should have also known that not being able to reach his boss by phone over such an important money transfer is a big red flag! Is his boss even on vacation? It’s always important to look further into these situations, especially when money is involved. 
+				</p>
+				<div class="restart-wrapper">
+					<button class="restart">Restart Game</button>
+				</div>
+			</div>
+
+			<!-- EMAIL REAL FAIL -->
+			<div id="emailreal-fail" class="info-wrapper hidden">
+				<p>
+					It seems like the email Mr. Blob deleted was a legitimate one. Unfortunately for Mr. Blob, this means having to make up for the work meeting he was expected to attend. Here are some ways to tell if a message you receive is actually real:
+				</p>
+				<ul>
+					<li>If you are wary if a message from a company or business is a scam, you can call to confirm if the sender is who they claim to be.</li>
+
+					<li>Inspect links to see if they direct to where you expect. Slight misspellings in company names or non-secure URLs are some indicators that the message is a scam.</li>
+				</ul>
+				<div class="restart-wrapper">
+					<button class="restart">Restart Game</button>
+				</div>
+			</div>
+
+      <!-- PHONE FAIL -->
+      <div id="phone-fail" class="info-wrapper hidden">
+        <p>
+        Oh no! You have fallen victim to a scam!
+        </p>
+        <p> 
+        In this situation, Thomas McKinnings is not an actual representative from the “Save The Children” Charity. Scammers can pose as charities to request donations for relief funds from unsuspecting victims. Always check with the charity directly for the appropriate methods to donate, before giving out any personal information.</p>
+
+	      <p>The Federal Trade Commission (FTC) received about 1.25 million fraud complaints in 2020, it is also estimated that for every 3 people called, 1 of them falls victim to the scam, with an average loss of $1,170. Here are a few tips to better prepare you to deal with scammers.
+				</p>
+				<p>Ways to avoid this</p>
+        <p>DO:</p>
+				<ul> 
+					<li>Do put your phone number on Canada’s Do Not Call List (DNCL). It won’t entirely stop spam calls, but it will make them easier to spot because most legitimate telemarketers won’t call you if you’re on the DNCL registry.</li>
+					<li>Do put your phone number on Canada’s Do Not Call List (DNCL). It won’t entirely stop spam calls, but it will make them easier to spot because most legitimate telemarketers won’t call you if you’re on the DNCL registry.</li>
+					<li>Do hang up on illegal robocalls.</li>
+          <li>Do slow down and ask questions of telemarketers. Legitimate businesses and charities will answer questions and give you time to consider a purchase or donation</li>
+          <li>Do independently research travel deals, charities or business and investment opportunities you hear about by phone.</li>
+				</ul>
+        <p>DO NOT:</p>
+				<ul> 
+					<li>Don’t answer calls from unknown numbers.</li>
+					<li>Don’t return one-ring calls from unknown numbers. These may be scams to get you to call hotlines in African and Caribbean countries that have Canada-style three-digit area codes, and you could incur hefty connection and per-minute fees.</li>
+					<li>Don’t follow instructions on a prerecorded message, such as “Press 1” to speak to a live operator (it will probably lead to a phishing expedition) or press any key to get taken off a call list (it will probably lead to more robocalls).</li>
+          <li>Don’t give personal or financial data, such as your Social Insurance number or credit card account number, to callers you don’t know. If they say they have the information and just need you to confirm it, that’s a trick.</li>
+          <li>Don’t pay registration or shipping charges to get a supposed free product or prize. Such fees are ploys to get your payment information.</li>
+          <li>Don’t make payments by gift card, prepaid debit card or wire transfer. Fraudsters favor these methods because they are hard to trace.</li>
+				</ul>
+				<div class="restart-wrapper">
+					<button class="restart">Restart Game</button>
+				</div>
+      </div>
+		</div>
+		
+		<!------------------------------------------------------------>
+		<!-- Info - SUCCESS -->
+		<div id="level-passed" class="scene interactive hidden">
+			<div class="restart-wrapper">
+				<button class="restart">Restart Game</button>
+			</div>
+				<!-- TEXT PASS -->
+			<div id="text-pass" class="info-wrapper hidden">
+				<p>
+					Success! Mr. Blob has avoided being scammed. Although the offer almost sounded too good to turn down, it is unfortunately a scam, more specifically, its Smishing. Smishing is a type of phishing and cybersecurity attack that is  carried out through mobile text messaging, also known as SMS phishing. Victims are deceived into giving sensitive information to a disguised attacker.  Lottery companies or any responsible business would not inform a winner of the prizes via text message, or ask you to click a link. 
+				</p>
+				<p>
+					During the Covid-19 pandemic, scammers are looking for various methods to scam people. Some signs of smishing scams are encouraging you to respond right away whether that be through large rewards. Many smishing messages appear to be from trustworthy sources but always be cautious, even if you recognize the organization.
+				</p>
+				<p>Ways to avoid this:</p>
+				<ul> 
+					<li>Check the phone number</li>
+					<li>Do not respond</li>
+					<li>Intall anti-malware app</li>
+				</ul>
+				<div class="restart-wrapper">
+					<button class="continue">Continue</button>
+				</div>
+			</div>
+
+				<!-- EMAIL SCAM PASS -->
+			<div id="emailscam-pass" class="info-wrapper hidden">
+			<p>
+					Mr. Blob deleted a scam email! Fortunately for Mr. Blob, this means company money was not falsely transferred to a malicious source. Here are some ways to tell if a message you receive is actually real:
+				</p>
+				<ul> 
+					<li>If you are wary if a message from a company or business is a scam, you can call to confirm if the sender is who they claim to be. If they explicitly say not to call, have the right to be suspicious like in this email. </li>
+
+					<li>Inspect links to see if they direct to where you expect. Slight misspellings in company names or non-secure URLs are some indicators that the message is a scam. In this example the company email domain was misspelt using an i instead of an l, and a 0 instead of an o.</li>
+				</ul>
+				<div class="restart-wrapper">
+					<button class="continue">Continue</button>
+				</div>
+			</div>
+
+				<!-- EMAIL REAL PASS -->
+			<div id="emailreal-pass" class="info-wrapper hidden">
+				<p>
+					Mr. Blob carries on to attend his scheduled work meeting. All his coworkers are present--good thing he didn’t miss the link!
+				</p>
+				<div class="restart-wrapper">
+					<button class="continue">Continue</button>
+				</div>
+			</div>
+      
+      <!-- PHONE PASS -->
+      <div id="phone-pass" class="info-wrapper hidden">
+        <p>
+          Phew! You made the right choice, that was actually a scam call.
+        </p>
+        <ul> 
+        In this situation, Thomas McKinnings is not an actual representative from the “Save The Children” Charity. Scammers can pose as charities to request donations for relief funds from unsuspecting victims. Always check with the charity directly for the appropriate methods to donate, before giving out any personal information. 
+
+	      The Federal Trade Commission (FTC) received about 1.25 million fraud complaints in 2020, it is also estimated that for every 3 people called, 1 of them falls victim to the scam, with an average loss of $1,170. Here are a few tips to better prepare you to deal with scammers.
+				</ul>
+        <p>DO:</p>
+				<ul> 
+					<li>Do put your phone number on Canada’s Do Not Call List (DNCL). It won’t entirely stop spam calls, but it will make them easier to spot because most legitimate telemarketers won’t call you if you’re on the DNCL registry.</li>
+					<li>Do put your phone number on Canada’s Do Not Call List (DNCL). It won’t entirely stop spam calls, but it will make them easier to spot because most legitimate telemarketers won’t call you if you’re on the DNCL registry.</li>
+					<li>Do hang up on illegal robocalls.</li>
+          <li>Do slow down and ask questions of telemarketers. Legitimate businesses and charities will answer questions and give you time to consider a purchase or donation</li>
+          <li>Do independently research travel deals, charities or business and investment opportunities you hear about by phone.</li>
+				</ul>
+        <p>DO NOT:</p>
+				<ul> 
+					<li>Don’t answer calls from unknown numbers.</li>
+					<li>Don’t return one-ring calls from unknown numbers. These may be scams to get you to call hotlines in African and Caribbean countries that have Canada-style three-digit area codes, and you could incur hefty connection and per-minute fees.</li>
+					<li>Don’t follow instructions on a prerecorded message, such as “Press 1” to speak to a live operator (it will probably lead to a phishing expedition) or press any key to get taken off a call list (it will probably lead to more robocalls).</li>
+          <li>Don’t give personal or financial data, such as your Social Insurance number or credit card account number, to callers you don’t know. If they say they have the information and just need you to confirm it, that’s a trick.</li>
+          <li>Don’t pay registration or shipping charges to get a supposed free product or prize. Such fees are ploys to get your payment information.</li>
+          <li>Don’t make payments by gift card, prepaid debit card or wire transfer. Fraudsters favor these methods because they are hard to trace.</li>
+				</ul>
+				<div class="restart-wrapper">
+					<button class="continue">Continue</button>
+				</div>
+      </div>
+		</div>
+	</div>
+
+	<button id="home">home</button>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+
+	</script>
+	<script src="./js/script.js" type="module">
+	</script>
+</body>
+
 </html>
