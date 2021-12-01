@@ -3,6 +3,8 @@ export default {
 	title: $("#title"),
 	sleep: $("#sleep"),
 	awake: $("#awake"),
+	citations: $("#citations"),
+	tutorial: $("#tutorial"),
 	mocha: $("#mocha-screen"),
 	home: $("#home-screen"), // Main phone home screen
 	gameover: $("#game-over"), // Game over screen

@@ -5,7 +5,7 @@ const WORDS_PER_MINUTE = 300
 const VARIATION = 54
 const PAUSE = 150
 
-const ELIPSIS_LOOP_TIME = 100
+const ELIPSIS_LOOP_TIME = 400
 
 const caller_dialog = $("#caller-dialog")
 const blob_dialog = $("#blob-dialog")
@@ -23,24 +23,22 @@ export default class PhoneCall {
 	}
 
 	end() {
+		this.reset()
+		this.dialog = this.root
+	}
+
+	reset() {
+		blob_dialog.empty()
+		caller_dialog.empty()
+		this.stopElipsisInterval()
 		for (let i = 0; i < this.timeouts.length; i++) {
 			clearTimeout(this.timeouts[i])
 		}
 		this.timeouts = []
-		this.dialog = this.root
-		this.current_dot = 0;
-		if (this.elipsis_interval)
-			clearInterval(this.elipsis_interval)
-		blob_dialog.empty()
-		caller_dialog.empty()
 	}
 
 	presentSpamSpeech() {
-		blob_dialog.empty()
-		caller_dialog.empty()
-		this.current_dot = 0;
-		if (this.elipsis_interval)
-			clearInterval(this.elipsis_interval)
+		this.reset()
 		const spammer_speech = this.dialog.spammer
 		this.speakTheWords({
 			the_words: spammer_speech.split(" "),
@@ -69,20 +67,9 @@ export default class PhoneCall {
 	}
 
 	speakTheWords({ the_words, onFinish }) {
-		let words = the_words.map((word, i) =>
-			'<span class="caller-dialog-word word-'
-			+ i + '">' + word + '</span>'
-		)
+
 		let timeout_id = null;
-
-		let elipsis = '. . .'.split(" ").map((dot, i) =>
-			'<span class="elipsis-dot elipsis-dot-' + i + '">.</span>').join("")
-
-
-		words = [...words,
-		'<span class="caller-dialog-word elipsis word-'
-		+ words.length + '">' + elipsis + '</span>'
-		]
+		let words = this.getWordElements(the_words)
 
 		caller_dialog.html(words.join(" "))
 
@@ -94,23 +81,19 @@ export default class PhoneCall {
 			const prev_element = $('.word-' + (word_index - 1))
 			const prev_text = prev_element.text()
 
-			let duration = prev_text !== 'Mr.' && /^.*[\.\!\,\?]$/.test(prev_text) ?
-				WORDS_PER_MINUTE + PAUSE : WORDS_PER_MINUTE
+			let duration = prev_text !==
+				'Mr.' && /^.*[\.\!\,\?]$/.test(prev_text)
+				? WORDS_PER_MINUTE + PAUSE
+				: WORDS_PER_MINUTE
+
 			duration += getRandomInt(VARIATION)
 
 			timeout_id = setTimeout(function () {
-				$(".caller-dialog-word").removeClass("active")
-				word_element.addClass("active")[0]
-					.scrollIntoView({
-						behavior: "smooth",
-						block: "center"
-					})
 
-				if (word_element.text() === '...') {
-					console.log(this.elipsisInterval)
-					this.elipsis_interval = setInterval(this.elipsisInterval.bind(this),
-						ELIPSIS_LOOP_TIME)
-				}
+				if (word_element.text() === '...')
+					this.startElipsisInterval()
+				else
+					this.activateWord(word_element)
 			}.bind(this), total_duration + duration)
 			total_duration += duration
 			this.timeouts.push(timeout_id)
@@ -120,13 +103,61 @@ export default class PhoneCall {
 		this.timeouts.push(timeout_id)
 	}
 
+	getWordElements(the_words) {
+		let words = the_words.map((word, i) =>
+			'<span class="caller-dialog-word word-'
+			+ i + '">' + word + '</span>'
+		)
+
+		let elipsis = '. . .'.split(" ").map((dot, i) =>
+			'<span class="elipsis-dot elipsis-dot-' + i + '">.</span>').join("")
+
+
+		words = [...words,
+		'<span class="caller-dialog-word elipsis word-'
+		+ words.length + '">' + elipsis + '</span>'
+		]
+
+		return words;
+	}
+
+	activateWord(word) {
+		$(".caller-dialog-word").removeClass("active")
+		word.addClass("active")[0]
+			.scrollIntoView({
+				behavior: "smooth",
+				block: "center"
+			})
+	}
+
+	startElipsisInterval() {
+		$(".caller-dialog-word").removeClass("active")
+		this.current_dot = 0;
+		this.elipsis_interval = setInterval(
+			this.elipsisInterval.bind(this),
+			ELIPSIS_LOOP_TIME
+		)
+	}
+
+	stopElipsisInterval() {
+		if (this.elipsis_interval) {
+			clearInterval(this.elipsis_interval)
+			this.elipsis_interval = null
+		}
+	}
 
 	// Animate elipsis
 	// 
 	// This function is ran every ELIPSIS_LOOP_TIME milliseconds	
 	elipsisInterval() {
-		const elipsis_element = $(".elipsis")
 		const elipsis_dot = $(".elipsis-dot")
+		const current = $(".elipsis-dot-" + this.current_dot)
+		elipsis_dot.removeClass("active")
+		current.addClass("active")
+		if (this.current_dot == 2)
+			this.current_dot = 0
+		else
+			this.current_dot += 1;
 
 	}
 

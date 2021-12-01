@@ -1,5 +1,6 @@
 import scenes from './Elements/scenes.js'
 import explanations from './Elements/explanations.js'
+import buttons from './Elements/buttons.js'
 
 const MESSAGE_DELAY = 800 //ms
 //
@@ -36,7 +37,7 @@ export function showExplanation(explanation) {
 // time_between_scenes: How long each scene will be displayed
 //            (in milliseconds)
 //      
-export function showScenesInOrder(the_scenes) {
+export function showScenesInOrder(the_scenes, onFinish) {
 	let time_between_scenes = 1200;
 
 	if (!Array.isArray(the_scenes)) return;
@@ -46,6 +47,8 @@ export function showScenesInOrder(the_scenes) {
 			showScene(scene)
 		}, time_between_scenes * index)
 	})
+
+	setTimeout(onFinish, time_between_scenes * the_scenes.length)
 }
 
 // Returns an event handler that 
@@ -93,4 +96,17 @@ export function continueGame() {
 	scenes.all.removeClass("blurr")
 	explanations.all.addClass("hidden")
 	showScene(scenes.home)	
+}
+
+export function showTitleButton() {
+	buttons.title_page.removeClass("hidden");
+}
+
+export function hideTitleButton() {
+  buttons.title_page.addClass("hidden");
+}
+
+export function goToTitlePage() {
+	hideTitleButton()
+	showScene(scenes.title)
 }

@@ -8,7 +8,7 @@ import { getSceneHandler, showScene } from '../Utilities.js'
 const COMMAND = "ssh mocha"
 const TIME_BETWEEN_CHARS = 200 //ms
 const TIME_BETWEEN_BLINK = 400 //ms
-const BLINKS = 4
+const BLINKS = 3
 const FINAL_PAUSE = 400 //ms
 
 const shell = $("#mocha-shell")

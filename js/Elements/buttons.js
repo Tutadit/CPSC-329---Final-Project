@@ -3,8 +3,11 @@
 export default {
 	restart:$(".restart"),
 	cont:$(".continue"),
+	title_page: $("#title-page"),
 	title: {
-		start: $("#start")
+		start: $("#start"),
+		tutorial:$("#go_tutorial"),
+    citations:$("#go_citationss")
 	},
 	home: {
 		messages: $("#messages"),

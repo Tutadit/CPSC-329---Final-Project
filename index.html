@@ -37,11 +37,14 @@
 		<!-- Title Scene -->
 		<div id="title" class="scene title-page">
 			<div class="us">
-				<h1>Unessay Project</h1>
-				<p class="title">CPSC 329</p>
+				<h2>CPSC329 Unessay Project</h2>
+				<h1>Mr. Blob's morning</h1>
 				<p>By: Juan Pablo Lozano, Akansha Malik, Paige So'Brien, Kaylee Nasser, Rana Mahveen</p>
 			</div>
+			
 			<button class="start" id="start">Start</button>
+			<button class="start" id="go_tutorial">Tutorial</button>
+			<button class="start" id="go_citationss">Citations</button>
 		</div>
     <!-- Sleep Scene -->
     <div id="sleep" class="scene hidden">
@@ -105,7 +108,7 @@
 			<div id="phone-dialog">
 				<div id="caller-dialog">
 				</div>
-			    <div id="blob-dialog">
+				<div id="blob-dialog">
 				</div>
 			</div>
       <button id="hang-up" class="ui phone-home-button" /> 
@@ -213,7 +216,7 @@
 				<!-- TEXT PASS -->
 			<div id="text-pass" class="info-wrapper hidden">
 				<p>
-					Success! Mr. Blob has avoided being scammed. Although the offer almost sounded too good to turn down, it is unfortunately a scam, more specifically, its Smishing. Smishing is a type of phishing and cybersecurity attack that is  carried out through mobile text messaging, also known as SMS phishing. Victims are deceived into giving sensitive information to a disguised attacker.  Lottery companies or any responsible business would not inform a winner of the prizes via text message, or ask you to click a link. 
+					Mr. Blob has avoided being scammed! Although the offer almost sounded too good to turn down, it is unfortunately a scam, more specifically, its Smishing. Smishing is a type of phishing and cybersecurity attack that is  carried out through mobile text messaging, also known as SMS phishing. Victims are deceived into giving sensitive information to a disguised attacker.  Lottery companies or any responsible business would not inform a winner of the prizes via text message, or ask you to click a link. 
 				</p>
 				<p>
 					During the Covid-19 pandemic, scammers are looking for various methods to scam people. Some signs of smishing scams are encouraging you to respond right away whether that be through large rewards. Many smishing messages appear to be from trustworthy sources but always be cautious, even if you recognize the organization.
@@ -286,12 +289,41 @@
 				</div>
       </div>
 		</div>
+
+		<div id="citations" class="scene hidden">
+			<h1>Citations</h1>
+			<p>AARP. (2021, July 2). <i>How to identify and avoid common phone scams.</i></p>
+			<ul>
+				<li>
+					<a href="https://www.aarp.org/money/scams-fraud/info-2019/phone.html" target="blank" rel="nonreferrer">
+						https://www.aarp.org/money/scams-fraud/info-2019/phone.html
+					</a>
+				</li>
+      <p>Government of Canada. (2018, January 14). <i>Canada's national do not call list.</i> DNCL.</p>
+      <ul>
+				<li>
+					<a href="https://lnnte-dncl.gc.ca/en" target="blank" rel="nonreferrer">
+						https://lnnte-dncl.gc.ca/en
+					</a>
+				</li>
+      <p>QuoStar. (2021, August 2). <i>Four common emails scams used to target businesses and employees</i></p>
+        <ul>
+          <li>
+            <a href="https://www.quostar.com/blog/business-scam-email-examples/" target="blank" = rel="nonreferrer">
+              https://www.quostar.com/blog/business-scam-email-examples/
+            </a>
+          </li>
+			</ul>
+		</div>
+
+		<div id="tutorial" class="scene hidden">
+			<h1>How to play</h1>
+		</div>
 	</div>
 
-	<button id="home">home</button>
+	<button id="title-page" class="hidden">Title Page</button>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
-
 	</script>
 	<script src="./js/script.js" type="module">
 	</script>

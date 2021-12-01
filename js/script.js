@@ -1,6 +1,7 @@
 
-import { getSceneHandler } from './Utilities.js'
+import { goToTitlePage } from './Utilities.js'
 import scenes from './Elements/scenes.js'
+import buttons from './Elements/buttons.js'
 import Title from './Scenes/Title.js'
 import Home from './Scenes/Home.js'
 import Text from './Scenes/Text.js'
@@ -28,8 +29,8 @@ function main() {
 // Bind all neccessary event handlers
 function addHandlers() {
 
-	$("#home").click(
-		getSceneHandler(scenes.home)
+	buttons.title_page.click(
+		goToTitlePage
 	)
 
 	Title.setup()

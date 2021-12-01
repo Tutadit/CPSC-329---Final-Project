@@ -66,11 +66,14 @@ background: linear-gradient(102deg, rgba(181,199,222,1) 0%, rgba(225,218,215,1) 
 }
 
 button.start {
- padding:5px;
- cursor: pointer;
- border-radius:5px;
- border:1px solid #ccc;
- box-shadow:0 0 4px 2px rgba(1, 6, 23, 0.56);
+	margin: 2%;
+	padding:2%;
+	cursor: pointer;	
+	border:2px solid rgb(157, 157, 143);
+	background-color: rgb(237, 237, 195);
+	box-shadow:0 0 4px 2px rgba(1, 6, 23, 0.56);
+	text-transform: uppercase;
+	font-weight: bold;
 }
 
 button.start:hover {
@@ -92,6 +95,16 @@ img.scene-img {
   background-repeat: no-repeat;  
 }
 
+
+/* --------------------------------------------------------- */
+/* Title Page */
+#title {
+	flex-direction: column;
+}
+
+#title .us {
+	margin-bottom: 5%;
+}
 
 /* --------------------------------------------------------- */
 /* Home Screen Scene */
@@ -407,7 +420,7 @@ span.caller-dialog-word.elipsis {
 	display: block;
 }
 
-span.caller-dialog-word.active {
+span.caller-dialog-word.active, span.elipsis-dot.active {
 	color: rgb(105, 243, 255);
 }
 
@@ -488,12 +501,34 @@ button.restart:hover, button.continue:hover {
 
 
 /* --------------------------------------------------------- */
+/* Citations */
+#citations {
+	flex-direction: column;
+	align-items: start;
+}
+
+#citations ul {
+	list-style: none;
+}
+
+#citations ul li {
+	margin-left: 13%;
+}
+
+/* --------------------------------------------------------- */
 /* Utilities */
 
-button#home {
+button#title-page {
+  padding:1%;
   position: absolute;
   bottom:10px;
   left: 10px;
+	border:2px solid rgb(157, 157, 143);
+	background-color: rgb(237, 237, 195);
+  box-shadow:0 0 3px 1px rgba(1, 6, 23, 0.56);
+	text-transform: uppercase;
+	font-weight: bold;
+	z-index: 30;
 }
 
 .hidden {
