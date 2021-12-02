@@ -71,6 +71,7 @@ export function getRandomInt(max) {
 
 export function gameOver(explanation) {
 	showScene(scenes.gameover)
+	hideTitleButton()
 	setTimeout(function () {
 		scenes.gameover.addClass("blurr")
 		showExplanation(explanation)
@@ -80,6 +81,7 @@ export function gameOver(explanation) {
 
 export function levelPassed(explanation) {
 	showScene(scenes.success)
+	hideTitleButton()
 	setTimeout(function () {
 		scenes.success.addClass("blurr")
 		showExplanation(explanation)
@@ -88,6 +90,7 @@ export function levelPassed(explanation) {
 
 export function restartGame() {
 	showScene(scenes.title);
+	hideTitleButton()
 	explanations.all.addClass("hidden")
 	scenes.all.removeClass("blurr read deleted spam-read spam-deleted real-read")
 }
@@ -95,6 +98,7 @@ export function restartGame() {
 export function continueGame() {
 	scenes.all.removeClass("blurr")
 	explanations.all.addClass("hidden")
+	showTitleButton()
 	showScene(scenes.home)	
 }
 
