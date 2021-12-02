@@ -18,6 +18,18 @@ body {
 	font-size: 1rem;
 }
 
+h1 {
+	margin-bottom: 0.5rem;
+}
+
+h2 {
+	margin-bottom: 0.3rem;
+}
+
+p {
+	margin-bottom: 0.2rem;
+}
+
 button {
 	font-size: 1rem;
   cursor: pointer;
@@ -71,7 +83,7 @@ button.start {
 	cursor: pointer;	
 	border:2px solid rgb(157, 157, 143);
 	background-color: rgb(237, 237, 195);
-	box-shadow:0 0 4px 2px rgba(1, 6, 23, 0.56);
+	box-shadow:0 0 4% 2% rgba(1, 6, 23, 0.56);
 	text-transform: uppercase;
 	font-weight: bold;
 }
@@ -525,11 +537,18 @@ button#title-page {
   left: 10px;
 	border:2px solid rgb(157, 157, 143);
 	background-color: rgb(237, 237, 195);
-  box-shadow:0 0 3px 1px rgba(1, 6, 23, 0.56);
+  box-shadow:0 0 3% 1% rgba(1, 6, 23, 0.56);
 	text-transform: uppercase;
 	font-weight: bold;
 	z-index: 30;
 }
+
+
+#tutorial {
+	flex-direction: column;
+	align-items: flex-start;
+}
+
 
 .hidden {
   opacity:0;
