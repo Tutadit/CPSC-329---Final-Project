@@ -23,8 +23,9 @@ export function showScene(scene) {
 }
 
 export function showExplanation(explanation) {
-	explanations.all.addClass("hidden")
+	explanations.all.addClass("hidden")	
 	explanation.removeClass("hidden")
+	explanation[0].scrollTop = 0;
 }
 
 // Show each scene in scenes one at a time
