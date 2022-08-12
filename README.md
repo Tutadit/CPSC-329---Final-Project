@@ -1,7 +1,6 @@
 ## CPSC 329 Unessay Project:
-# "Choose well or be scammed" - Working Title? 
-We'll be developing our "choose your own 
-adventure" style like game using web development. Web projects
+# "MrBobsMorning" 
+"choose your own adventure" style like game using web development. Web projects
 use `HTML`, `CSS`, and `JS`.
 
 ## `HTML` - `H`yper`T`ext `M`atkup `L`anguage
